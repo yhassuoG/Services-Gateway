@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+      - id: bankaccount-service
+        uri: lb://BANKACCOUNT-SERVICE
+        predicates:
+          - Path=/bankaccount/**
+      - id: customer-service
+        uri: lb://CUSTOMER-SERVICE
+        predicates:
+          - Path=/customer/**
+      - id: movement-service
+        uri: lb://MOVEMENT-SERVICE
+        predicates:
+          - Path=/movement/**
+
+server:
+  port: 8989
